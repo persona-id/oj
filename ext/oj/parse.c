@@ -788,6 +788,7 @@ oj_num_as_value(NumInfo ni) {
 	    long double	d = (long double)ni->i * (long double)ni->div + (long double)ni->num;
 	    int		x = (int)((int64_t)ni->exp - ni->di);
 
+	    printf("\n*** first %Lg  %0.18Lf\n", d, d);
 	    // Rounding sometimes cuts off the last digit even if there are only
 	    // 15 digits. This attempts to fix those few cases where this
 	    // occurs.
@@ -800,11 +801,13 @@ oj_num_as_value(NumInfo ni) {
 		}
 	    } else {
 		d = roundl(d);
+		printf("\n*** second %Lg  %0.18Lf\n", d, d);
 		if (0 < x) {
 		    d *= powl(10.0L, x);
 		} else if (0 > x) {
 		    d /= powl(10.0L, -x);
 		}
+		printf("\n*** third %Lg  %0.18Lf  %0.16f\n", d, d, (double)d);
 		if (ni->neg) {
 		    d = -d;
 		}

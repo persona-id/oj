@@ -214,6 +214,11 @@ class StrictJuice < Minitest::Test
     dump_and_load(7 ** 55, false)
   end
 
+  def test_decimal_strict
+    Oj.default_options = { :bigdecimal_load => false}
+    dump_and_load(48.949268, true)
+  end
+  
   # BigDecimal
   def test_bigdecimal_strict
     Oj.default_options = { :bigdecimal_load => true}
