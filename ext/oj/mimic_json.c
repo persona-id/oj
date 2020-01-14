@@ -564,7 +564,8 @@ static VALUE mimic_parse_core(int argc, VALUE *argv, VALUE self, bool bang) {
     pi.options.create_ok     = No;
     pi.options.allow_nan     = (bang ? Yes : No);
     pi.options.nilnil        = No;
-    pi.options.bigdec_load   = RubyDec;
+    // Respect the default options for Oj
+    // pi.options.bigdec_load   = RubyDec;
     pi.options.mode          = CompatMode;
     pi.max_depth             = 100;
 
