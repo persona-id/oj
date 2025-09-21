@@ -575,7 +575,7 @@ static void read_num(ParseInfo pi) {
         }
     }
     if (CompatMode == pi->options.mode) {
-        if (pi->options.compat_bigdec) {
+        if (pi->options.compat_bigdec && ni.bigdec_load != AutoDec) {
             ni.big = 1;
         }
     } else if (BigDec == pi->options.bigdec_load) {
