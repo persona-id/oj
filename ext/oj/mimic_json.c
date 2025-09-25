@@ -379,19 +379,7 @@ static VALUE mimic_generate_core(int argc, VALUE *argv, Options copts) {
         rb_raise(rb_eTypeError, "nil not allowed.");
     }
     */
-    if (1 < argc) {
-        oj_dump_obj_to_json_using_params(*argv, copts, &out, argc - 1, argv + 1);
-    } else {
-        VALUE active_hack[1];
-
-        if (Qundef == state_class) {
-            rb_warn("Oj::Rails.mimic_JSON was called implicitly. "
-                    "Call it explicitly beforehand if you want to remove this warning.");
-            oj_define_mimic_json(0, NULL, Qnil);
-        }
-        active_hack[0] = rb_funcall(state_class, oj_new_id, 0);
-        oj_dump_obj_to_json_using_params(*argv, copts, &out, 1, active_hack);
-    }
+    oj_dump_obj_to_json_using_params(*argv, copts, &out, argc - 1, argv + 1);
     if (0 == out.buf) {
         rb_raise(rb_eNoMemError, "Not enough memory.");
     }
